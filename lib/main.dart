@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:training_flutter/Screens/home_screen.dart';
+import 'Controllers/product_controller.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => ProductController(),)
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -14,7 +22,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen());
   }
 }
-
