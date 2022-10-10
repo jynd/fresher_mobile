@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:training_flutter/Screens/acount_info_screen.dart';
 
+import '../Controllers/product_controller.dart';
+import 'package:provider/provider.dart';
+
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
 
@@ -9,6 +12,7 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+  ProductController get _watch => context.watch<ProductController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,15 +27,17 @@ class _AccountScreenState extends State<AccountScreen> {
                 child: ListTile(
                   leading: const CircleAvatar(
                     backgroundImage: NetworkImage(
-                        'https://www.w3schools.com/HOWTO/img_avatar.png'),
+                        'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/35/IronMan-EndgameProfile.jpg/revision/latest/top-crop/width/360/height/360?cb=20190423175213'),
                   ),
-                  title: const Text(
-                    'Nguyễn Văn A',
-                    style: TextStyle(fontSize: 15),
+                  title: Text(
+                    _watch.list[0].name,
+                    style: const TextStyle(fontSize: 15),
                   ),
-                  subtitle: const Text('0123456789'),
+                  subtitle: Text('${_watch.list[0].telenumber}'),
                   trailing: IconButton(
-                    icon: const Icon(Icons.edit_note),
+                    icon: const ImageIcon(
+                      AssetImage('assets/edit.png'),
+                    ),
                     onPressed: () {
                       Navigator.push(
                           context,
@@ -63,9 +69,6 @@ class _AccountScreenState extends State<AccountScreen> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               ListTile(
                   leading: const Text(
                     'Đơn mua',
@@ -84,109 +87,110 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                   )),
               Container(
-                margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
                     color: Colors.white,
                     padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Column(
-                          children: <Widget>[
-                            CircleAvatar(
-                              backgroundColor: Color(0xfff2f2f2),
-                              child: IconButton(
-                                  onPressed: () {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      content: Text('Chờ xác nhận'),
-                                      duration: Duration(seconds: 1),
-                                    ));
-                                  },
-                                  icon: const Icon(
-                                    Icons.note_add_rounded,
-                                    color: Colors.red,
-                                  )),
-                            ),
-                            const Text('Chờ xác nhân',
-                                style: TextStyle(fontSize: 10))
-                          ],
+                        Container(
+                          width: MediaQuery.of(context).size.width / 4,
+                          child: Column(
+                            children: <Widget>[
+                              CircleAvatar(
+                                backgroundColor: Color(0xfff2f2f2),
+                                child: IconButton(
+                                    onPressed: () {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text('Chờ xác nhận'),
+                                        duration: Duration(seconds: 1),
+                                      ));
+                                    },
+                                    icon: const ImageIcon(
+                                      AssetImage('assets/choxacnhan.png'),
+                                      color: Color(0xffF12C2C),
+                                    )),
+                              ),
+                              const Text('Chờ xác nhân',
+                                  style: TextStyle(fontSize: 10))
+                            ],
+                          ),
                         ),
-                        const SizedBox(
-                          width: 30,
+                        Container(
+                          width: MediaQuery.of(context).size.width / 4,
+                          child: Column(
+                            children: <Widget>[
+                              CircleAvatar(
+                                backgroundColor: Color(0xfff2f2f2),
+                                child: IconButton(
+                                    onPressed: () {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text('Chờ giao'),
+                                        duration: Duration(seconds: 1),
+                                      ));
+                                    },
+                                    icon: const ImageIcon(
+                                      AssetImage('assets/chogiao.png'),
+                                      color: Color(0xffF12C2C),
+                                    )),
+                              ),
+                              const Text('Chờ giao',
+                                  style: TextStyle(fontSize: 10))
+                            ],
+                          ),
                         ),
-                        Column(
-                          children: <Widget>[
-                            CircleAvatar(
-                              backgroundColor: Color(0xfff2f2f2),
-                              child: IconButton(
-                                  onPressed: () {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      content: Text('Chờ giao'),
-                                      duration: Duration(seconds: 1),
-                                    ));
-                                  },
-                                  icon: const Icon(
-                                    Icons.card_giftcard,
-                                    color: Colors.red,
-                                  )),
-                            ),
-                            const Text('Chờ giao',
-                                style: TextStyle(fontSize: 10))
-                          ],
+                        Container(
+                          width: MediaQuery.of(context).size.width / 4,
+                          child: Column(
+                            children: <Widget>[
+                              CircleAvatar(
+                                backgroundColor: Color(0xfff2f2f2),
+                                child: IconButton(
+                                    onPressed: () {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text('Đang giao'),
+                                        duration: Duration(seconds: 1),
+                                      ));
+                                    },
+                                    icon: const ImageIcon(
+                                      AssetImage('assets/danggiao.png'),
+                                      color: Color(0xffF12C2C),
+                                    )),
+                              ),
+                              Text('Đang giao',
+                                  style: const TextStyle(fontSize: 10))
+                            ],
+                          ),
                         ),
-                        const SizedBox(
-                          width: 40,
-                        ),
-                        Column(
-                          children: <Widget>[
-                            CircleAvatar(
-                              backgroundColor: Color(0xfff2f2f2),
-                              child: IconButton(
-                                  onPressed: () {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      content: Text('Đang giao'),
-                                      duration: Duration(seconds: 1),
-                                    ));
-                                  },
-                                  icon: const Icon(
-                                    Icons.local_shipping,
-                                    color: Colors.red,
-                                  )),
-                            ),
-                            Text('Đang giao',
-                                style: const TextStyle(fontSize: 10))
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 40,
-                        ),
-                        Column(
-                          children: <Widget>[
-                            CircleAvatar(
-                              backgroundColor: Color(0xfff2f2f2),
-                              child: IconButton(
-                                  onPressed: () {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      content: Text('Đánh giá'),
-                                      duration: Duration(seconds: 1),
-                                    ));
-                                  },
-                                  icon: const Icon(
-                                    Icons.star_rate_rounded,
-                                    color: Color(0xfff8b61a),
-                                  )),
-                            ),
-                            const Text(
-                              'Đánh giá',
-                              style: TextStyle(fontSize: 10),
-                            )
-                          ],
+                        Container(
+                          width: MediaQuery.of(context).size.width / 4,
+                          child: Column(
+                            children: <Widget>[
+                              CircleAvatar(
+                                backgroundColor: Color(0xfff2f2f2),
+                                child: IconButton(
+                                    onPressed: () {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text('Đánh giá'),
+                                        duration: Duration(seconds: 1),
+                                      ));
+                                    },
+                                    icon: const Icon(
+                                      Icons.star_rate_rounded,
+                                      color: Color(0xfff8b61a),
+                                    )),
+                              ),
+                              const Text(
+                                'Đánh giá',
+                                style: TextStyle(fontSize: 10),
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -261,11 +265,12 @@ class _AccountScreenState extends State<AccountScreen> {
                           child: Column(
                             children: [
                               Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Icon(
-                                    Icons.monetization_on,
-                                    color: Color(0xfff8b61a),
-                                  )),
+                                alignment: Alignment.topLeft,
+                                child: ImageIcon(
+                                  AssetImage('assets/bicoin.png'),
+                                  color: Color(0xffF8B61A),
+                                ),
+                              ),
                               SizedBox(
                                 height: 10,
                               ),
@@ -294,11 +299,12 @@ class _AccountScreenState extends State<AccountScreen> {
                           child: Column(
                             children: [
                               Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Icon(
-                                    Icons.request_quote,
-                                    color: Color(0xff5aa753),
-                                  )),
+                                alignment: Alignment.topLeft,
+                                child: ImageIcon(
+                                  AssetImage('assets/donhang.png'),
+                                  color: Color(0xff5AA753),
+                                ),
+                              ),
                               SizedBox(
                                 height: 10,
                               ),
@@ -327,11 +333,12 @@ class _AccountScreenState extends State<AccountScreen> {
                           child: Column(
                             children: [
                               Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Icon(
-                                    Icons.maps_home_work,
-                                    color: Color(0xff2151c9),
-                                  )),
+                                alignment: Alignment.topLeft,
+                                child: ImageIcon(
+                                  AssetImage('assets/shop.png'),
+                                  color: Color(0xff2151C9),
+                                ),
+                              ),
                               SizedBox(
                                 height: 10,
                               ),
@@ -372,7 +379,7 @@ class _AccountScreenState extends State<AccountScreen> {
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: Icon(Icons.contact_mail),
+                          leading: ImageIcon(AssetImage('assets/lienhe.png')),
                           title: Text('Liên hệ'),
                         ),
                         ListTile(
@@ -382,7 +389,9 @@ class _AccountScreenState extends State<AccountScreen> {
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: Icon(Icons.question_mark),
+                          leading: ImageIcon(AssetImage(
+                            'assets/question_icon.png',
+                          )),
                           title: Text('Câu hỏi thường gặp'),
                         ),
                       ],
@@ -415,7 +424,7 @@ class _AccountScreenState extends State<AccountScreen> {
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: Icon(Icons.notifications),
+                          leading: ImageIcon(AssetImage('assets/thongbao.png')),
                           title: Text('Thông báo'),
                         ),
                         ListTile(
@@ -425,7 +434,7 @@ class _AccountScreenState extends State<AccountScreen> {
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: Icon(Icons.location_on),
+                          leading: ImageIcon(AssetImage('assets/diachi.png')),
                           title: Text('Địa chỉ nhận hàng'),
                         ),
                         ListTile(
@@ -435,7 +444,8 @@ class _AccountScreenState extends State<AccountScreen> {
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: Icon(Icons.sticky_note_2),
+                          leading:
+                              ImageIcon(AssetImage('assets/gioithieu.png')),
                           title: Text('Giới thiệu'),
                         ),
                         ListTile(
@@ -445,7 +455,7 @@ class _AccountScreenState extends State<AccountScreen> {
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: Icon(Icons.event_note_rounded),
+                          leading: ImageIcon(AssetImage('assets/donggop.png')),
                           title: Text('Đóng góp ý kiến'),
                         ),
                         ListTile(
@@ -455,7 +465,7 @@ class _AccountScreenState extends State<AccountScreen> {
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: Icon(Icons.logout_outlined),
+                          leading: ImageIcon(AssetImage('assets/dangxuat.png')),
                           title: Text('Đăng xuất'),
                         ),
                         ListTile(
@@ -465,7 +475,7 @@ class _AccountScreenState extends State<AccountScreen> {
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: Icon(Icons.no_accounts),
+                          leading: ImageIcon(AssetImage('assets/xoatk.png')),
                           title: Text('Xóa tài khoản'),
                         ),
                       ],
@@ -508,8 +518,8 @@ class _AccountScreenState extends State<AccountScreen> {
                                   contentPadding:
                                       EdgeInsets.only(top: 5, left: 5),
                                   border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.circular(15)),
-                                  hintText: 'Code',
                                 ),
                               ),
                             ),
@@ -518,6 +528,7 @@ class _AccountScreenState extends State<AccountScreen> {
                             ),
                             Container(
                               width: 70,
+                              height: 40,
                               child: RaisedButton(
                                 onPressed: () {
                                   ScaffoldMessenger.of(context)
@@ -544,10 +555,10 @@ class _AccountScreenState extends State<AccountScreen> {
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                           IconButton(
-                            icon: Icon(
-                              Icons.question_mark,
-                              size: 20,
-                              color: Colors.white,
+                            color: Colors.white,
+                            icon: ImageIcon(
+                              AssetImage('assets/question_icon.png'),
+                              size: 30,
                             ),
                             onPressed: () {
                               ScaffoldMessenger.of(context)
@@ -566,19 +577,16 @@ class _AccountScreenState extends State<AccountScreen> {
                       child: Row(
                         children: [
                           IconButton(
-                            onPressed: () {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text('đã sao chép'),
-                                duration: Duration(seconds: 1),
-                              ));
-                            },
-                            icon: Icon(
-                              Icons.sticky_note_2_rounded,
-                              color: Colors.white,
-                              size: 28,
-                            ),
-                          ),
+                              onPressed: () {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text('đã sao chép'),
+                                  duration: Duration(seconds: 1),
+                                ));
+                              },
+                              icon: ImageIcon(
+                                  color: Colors.white,
+                                  AssetImage('assets/copyfileIcon.png'))),
                           SizedBox(
                             width: 5,
                           ),

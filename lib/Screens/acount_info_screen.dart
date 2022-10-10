@@ -79,6 +79,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
+          color: Colors.white,
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,20 +131,32 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                 padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
-                    buildTextField(
-                        "Họ và tên", _watch.list[0].name, true, _nameTextField),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Họ và tên',
+                          style: TextStyle(color: Colors.grey),
+                        )),
+                    buildTextField(_watch.list[0].name, true, _nameTextField),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Ngày sinh',
+                          style: TextStyle(color: Colors.grey),
+                        )),
                     Padding(
                       padding: EdgeInsets.only(bottom: 30),
                       child: TextField(
                         controller: _dateController,
                         decoration: InputDecoration(
-                          suffixIcon: Icon(Icons.calendar_today),
-                          fillColor: Color(0xffD9D9D9),
+                          suffixIcon: ImageIcon(
+                            AssetImage('assets/datetime.png'),
+                          ),
+                          fillColor: Color(0xfffbfbfb),
                           filled: true,
                           border: InputBorder.none,
                           contentPadding:
-                              EdgeInsets.only(bottom: 5, left: 5, top: 5),
-                          labelText: 'Ngày sinh',
+                              EdgeInsets.only(bottom: 5, left: 5, top: 15),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: formatDate.format(_watch.list[0].birthday),
                           hintStyle:
@@ -164,14 +177,19 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                         },
                       ),
                     ),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Giới tính',
+                          style: TextStyle(color: Colors.grey),
+                        )),
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.only(bottom: 30),
                       child: DropdownButtonFormField<String>(
                         decoration: InputDecoration(
-                          labelText: 'Giới tính',
                           hintText: _watch.list[0].sexe,
-                          fillColor: Color(0xffD9D9D9),
+                          fillColor: Color(0xfffbfbfb),
                           filled: true,
                           border: InputBorder.none,
                         ),
@@ -189,14 +207,29 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                         value: currentItemSelected,
                       ),
                     ),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Email',
+                          style: TextStyle(color: Colors.grey),
+                        )),
                     buildTextField(
-                        "Email", _watch.list[0].email, false, _emailTextField),
-                    buildTextField("Địa chỉ", _watch.list[0].address, false,
-                        _addressTextField),
+                        _watch.list[0].email, false, _emailTextField),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Địa chỉ',
+                          style: TextStyle(color: Colors.grey),
+                        )),
                     buildTextField(
-                        "Số điện thoại",
-                        _watch.list[0].telenumber.toString(),
-                        false,
+                        _watch.list[0].address, false, _addressTextField),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Số điện thoại',
+                          style: TextStyle(color: Colors.grey),
+                        )),
+                    buildTextField(_watch.list[0].telenumber.toString(), false,
                         _tlnumberTextField),
                   ],
                 ),
@@ -222,20 +255,33 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      buildTextField("Họ và tên", "Họ và tên", false,
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Họ và tên',
+                            style: TextStyle(color: Colors.grey),
+                          )),
+                      buildTextField("Họ và tên", false,
                           TextEditingController(text: null)),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Ngày sinh',
+                            style: TextStyle(color: Colors.grey),
+                          )),
                       Padding(
                         padding: EdgeInsets.only(bottom: 30),
                         child: TextField(
                           controller: _dateController,
                           decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.calendar_today),
-                            fillColor: Color(0xffD9D9D9),
+                            suffixIcon: ImageIcon(
+                              AssetImage('assets/datetime.png'),
+                            ),
+                            fillColor: Color(0xfffbfbfb),
                             filled: true,
                             border: InputBorder.none,
                             contentPadding:
                                 EdgeInsets.only(bottom: 5, left: 5, top: 5),
-                            labelText: 'Ngày sinh',
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                             hintText: 'Ngày Sinh',
                             hintStyle:
@@ -256,13 +302,18 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                           },
                         ),
                       ),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Giới tính',
+                            style: TextStyle(color: Colors.grey),
+                          )),
                       Container(
                         width: double.infinity,
                         padding: EdgeInsets.only(bottom: 30),
                         child: DropdownButtonFormField<String>(
                           decoration: InputDecoration(
-                            labelText: 'Giới tính',
-                            fillColor: Color(0xffD9D9D9),
+                            fillColor: Color(0xfffbfbfb),
                             filled: true,
                             border: InputBorder.none,
                           ),
@@ -347,8 +398,8 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.save,
+                          ImageIcon(
+                            AssetImage('assets/save.png'),
                             color: Colors.white,
                           ),
                           SizedBox(

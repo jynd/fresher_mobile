@@ -65,6 +65,32 @@ flutter:
      - assets/1.png
      - assets/iconxacnhan.png
      - assets/2.png
+     - assets/copyfileIcon.png
+     - assets/question_icon.png
+     - assets/dangxuat.png
+     - assets/diachi.png
+     - assets/donggop.png
+     - assets/gioithieu.png
+     - assets/thongbao.png
+     - assets/xoatk.png
+     - assets/lienhe.png
+     - assets/bicoin.png
+     - assets/shop.png
+     - assets/donhang.png
+     - assets/danggiao.png
+     - assets/chogiao.png
+     - assets/choxacnhan.png
+     - assets/edit.png
+     - assets/datetime.png
+     - assets/save.png
+     - assets/user.png
+     - assets/pay.png
+     - assets/care.png
+     - assets/buy.png
+     - assets/buychoose.png
+     - assets/carechoose.png
+     - assets/paychoose.png
+     - assets/usernochoose.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

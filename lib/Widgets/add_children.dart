@@ -45,20 +45,33 @@ class _DynamicWidgetState extends State<DynamicWidget> {
               padding: EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  buildTextField("Họ và tên", "Họ và tên", false,
-                      TextEditingController(text: null)),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Họ và tên',
+                        style: TextStyle(color: Colors.grey),
+                      )),
+                  buildTextField(
+                      "Họ và tên", false, TextEditingController(text: null)),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Ngày sinh',
+                        style: TextStyle(color: Colors.grey),
+                      )),
                   Padding(
                     padding: EdgeInsets.only(bottom: 30),
                     child: TextField(
                       controller: _dateController,
                       decoration: InputDecoration(
-                        suffixIcon: Icon(Icons.calendar_today),
-                        fillColor: Color(0xffD9D9D9),
+                        suffixIcon: ImageIcon(
+                          AssetImage('assets/datetime.png'),
+                        ),
+                        fillColor: Color(0xfffbfbfb),
                         filled: true,
                         border: InputBorder.none,
                         contentPadding:
                             EdgeInsets.only(bottom: 5, left: 5, top: 5),
-                        labelText: 'Ngày sinh',
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                         hintText: 'Ngày Sinh',
                         hintStyle: TextStyle(fontSize: 16, color: Colors.black),
@@ -78,13 +91,18 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                       },
                     ),
                   ),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Giới tính',
+                        style: TextStyle(color: Colors.grey),
+                      )),
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.only(bottom: 30),
                     child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
-                        labelText: 'Giới tính',
-                        fillColor: Color(0xffD9D9D9),
+                        fillColor: Color(0xfffbfbfb),
                         filled: true,
                         border: InputBorder.none,
                       ),
