@@ -65,9 +65,8 @@ class _ItemListState extends State<ItemList2> {
               },
             ),
           ),
-          Positioned(
-            top: 12,
-            left: 12,
+          Container(
+            alignment: Alignment.center,
             child: IconButton(
               icon: const Icon(Icons.play_arrow, color: Colors.white70),
               onPressed: () {},
@@ -77,4 +76,5 @@ class _ItemListState extends State<ItemList2> {
       ),
     );
   }
+
 }
