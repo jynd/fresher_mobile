@@ -10,10 +10,8 @@ class PayScreen extends StatefulWidget {
 class _PayScreenState extends State<PayScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Đang phát triển :)))'),
-      ),
+    return const Center(
+      child: Text('Đang phát triển :)))'),
     );
   }
 }

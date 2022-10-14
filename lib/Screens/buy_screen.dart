@@ -10,10 +10,8 @@ class BuyScreen extends StatefulWidget {
 class _BuyScreenState extends State<BuyScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text("Đang phát triển :)"),
-      ),
+    return const Center(
+      child: Text("Đang phát triển :)"),
     );
   }
 }

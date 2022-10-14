@@ -16,10 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   final screens = [
-    BuyScreen(),
-    CareScreen(),
-    PayScreen(),
-    AccountScreen(),
+    const BuyScreen(),
+    const CareScreen(),
+    const PayScreen(),
+    const AccountScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -35,17 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   });
                 },
                 child: Container(
-                  padding: EdgeInsets.only(top: 18),
-                  margin: EdgeInsets.only(right: 5),
+                  padding: const EdgeInsets.only(top: 18),
+                  margin: const EdgeInsets.only(right: 5),
                   height: 70,
                   width: MediaQuery.of(context).size.width / 4,
-                  decoration: BoxDecoration(color: Color(0xffF37170)),
+                  decoration: const BoxDecoration(color: Color(0xffF37170)),
                   child: Column(
                     children: [
                       _selectedIndex == 0
                           ? Image.asset('assets/buychoose.png')
                           : Image.asset('assets/buy.png'),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       Text(
@@ -68,11 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   });
                 },
                 child: Container(
-                  padding: EdgeInsets.only(top: 15),
-                  margin: EdgeInsets.only(right: 5, left: 5),
+                  padding: const EdgeInsets.only(top: 15),
+                  margin: const EdgeInsets.only(right: 5, left: 5),
                   height: 70,
                   width: MediaQuery.of(context).size.width / 4,
-                  decoration: BoxDecoration(color: Color(0xffF37170)),
+                  decoration: const BoxDecoration(color: Color(0xffF37170)),
                   child: Column(
                     children: [
                       _selectedIndex == 1
@@ -98,17 +98,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   });
                 },
                 child: Container(
-                  padding: EdgeInsets.only(top: 18),
-                  margin: EdgeInsets.only(right: 5, left: 5),
+                  padding: const EdgeInsets.only(top: 18),
+                  margin: const EdgeInsets.only(right: 5, left: 5),
                   height: 70,
                   width: MediaQuery.of(context).size.width / 4,
-                  decoration: BoxDecoration(color: Color(0xffF37170)),
+                  decoration: const BoxDecoration(color: Color(0xffF37170)),
                   child: Column(
                     children: [
                       _selectedIndex == 2
                           ? Image.asset('assets/paychoose.png')
                           : Image.asset('assets/pay.png'),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Text(
@@ -131,11 +131,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   });
                 },
                 child: Container(
-                  padding: EdgeInsets.only(top: 15),
-                  margin: EdgeInsets.only(left: 5),
+                  padding: const EdgeInsets.only(top: 15),
+                  margin: const EdgeInsets.only(left: 5),
                   height: 70,
                   width: MediaQuery.of(context).size.width / 4,
-                  decoration: BoxDecoration(color: Color(0xffF37170)),
+                  decoration: const BoxDecoration(color: Color(0xffF37170)),
                   child: Column(
                     children: [
                       _selectedIndex == 3

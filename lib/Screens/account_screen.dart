@@ -16,10 +16,10 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff2f2f2),
+      backgroundColor: const Color(0xfff2f2f2),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 20),
           child: Column(
             children: [
               Container(
@@ -55,16 +55,16 @@ class _AccountScreenState extends State<AccountScreen> {
                   children: [
                     Container(
                       width: double.infinity,
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       height: 220,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage('assets/1.png'),
                               fit: BoxFit.fill)),
                       child: Container(
                           alignment: Alignment.topLeft,
-                          padding: EdgeInsets.only(top: 40, left: 40),
-                          child: Text('HẠNG: VÀNG')),
+                          padding: const EdgeInsets.only(top: 40, left: 40),
+                          child: const Text('HẠNG: VÀNG')),
                     )
                   ],
                 ),
@@ -76,7 +76,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                   trailing: TextButton(
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text('Xem lịch sử mua hàng'),
                         duration: Duration(seconds: 1),
                       ));
@@ -86,114 +86,112 @@ class _AccountScreenState extends State<AccountScreen> {
                       style: TextStyle(color: Colors.black),
                     ),
                   )),
-              Container(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    color: Colors.white,
-                    padding: const EdgeInsets.only(top: 10, bottom: 10),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width / 4,
-                          child: Column(
-                            children: <Widget>[
-                              CircleAvatar(
-                                backgroundColor: Color(0xfff2f2f2),
-                                child: IconButton(
-                                    onPressed: () {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: Text('Chờ xác nhận'),
-                                        duration: Duration(seconds: 1),
-                                      ));
-                                    },
-                                    icon: const ImageIcon(
-                                      AssetImage('assets/choxacnhan.png'),
-                                      color: Color(0xffF12C2C),
-                                    )),
-                              ),
-                              const Text('Chờ xác nhân',
-                                  style: TextStyle(fontSize: 10))
-                            ],
-                          ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4,
+                        child: Column(
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundColor: const Color(0xfff2f2f2),
+                              child: IconButton(
+                                  onPressed: () {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(const SnackBar(
+                                      content: Text('Chờ xác nhận'),
+                                      duration: Duration(seconds: 1),
+                                    ));
+                                  },
+                                  icon: const ImageIcon(
+                                    AssetImage('assets/choxacnhan.png'),
+                                    color: Color(0xffF12C2C),
+                                  )),
+                            ),
+                            const Text('Chờ xác nhân',
+                                style: TextStyle(fontSize: 10))
+                          ],
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 4,
-                          child: Column(
-                            children: <Widget>[
-                              CircleAvatar(
-                                backgroundColor: Color(0xfff2f2f2),
-                                child: IconButton(
-                                    onPressed: () {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: Text('Chờ giao'),
-                                        duration: Duration(seconds: 1),
-                                      ));
-                                    },
-                                    icon: const ImageIcon(
-                                      AssetImage('assets/chogiao.png'),
-                                      color: Color(0xffF12C2C),
-                                    )),
-                              ),
-                              const Text('Chờ giao',
-                                  style: TextStyle(fontSize: 10))
-                            ],
-                          ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4,
+                        child: Column(
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundColor: const Color(0xfff2f2f2),
+                              child: IconButton(
+                                  onPressed: () {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(const SnackBar(
+                                      content: Text('Chờ giao'),
+                                      duration: Duration(seconds: 1),
+                                    ));
+                                  },
+                                  icon: const ImageIcon(
+                                    AssetImage('assets/chogiao.png'),
+                                    color: Color(0xffF12C2C),
+                                  )),
+                            ),
+                            const Text('Chờ giao',
+                                style: TextStyle(fontSize: 10))
+                          ],
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 4,
-                          child: Column(
-                            children: <Widget>[
-                              CircleAvatar(
-                                backgroundColor: Color(0xfff2f2f2),
-                                child: IconButton(
-                                    onPressed: () {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: Text('Đang giao'),
-                                        duration: Duration(seconds: 1),
-                                      ));
-                                    },
-                                    icon: const ImageIcon(
-                                      AssetImage('assets/danggiao.png'),
-                                      color: Color(0xffF12C2C),
-                                    )),
-                              ),
-                              Text('Đang giao',
-                                  style: const TextStyle(fontSize: 10))
-                            ],
-                          ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4,
+                        child: Column(
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundColor: const Color(0xfff2f2f2),
+                              child: IconButton(
+                                  onPressed: () {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(const SnackBar(
+                                      content: Text('Đang giao'),
+                                      duration: Duration(seconds: 1),
+                                    ));
+                                  },
+                                  icon: const ImageIcon(
+                                    AssetImage('assets/danggiao.png'),
+                                    color: Color(0xffF12C2C),
+                                  )),
+                            ),
+                            const Text('Đang giao',
+                                style: TextStyle(fontSize: 10))
+                          ],
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 4,
-                          child: Column(
-                            children: <Widget>[
-                              CircleAvatar(
-                                backgroundColor: Color(0xfff2f2f2),
-                                child: IconButton(
-                                    onPressed: () {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: Text('Đánh giá'),
-                                        duration: Duration(seconds: 1),
-                                      ));
-                                    },
-                                    icon: const Icon(
-                                      Icons.star_rate_rounded,
-                                      color: Color(0xfff8b61a),
-                                    )),
-                              ),
-                              const Text(
-                                'Đánh giá',
-                                style: TextStyle(fontSize: 10),
-                              )
-                            ],
-                          ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4,
+                        child: Column(
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundColor: const Color(0xfff2f2f2),
+                              child: IconButton(
+                                  onPressed: () {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(const SnackBar(
+                                      content: Text('Đánh giá'),
+                                      duration: Duration(seconds: 1),
+                                    ));
+                                  },
+                                  icon: const Icon(
+                                    Icons.star_rate_rounded,
+                                    color: Color(0xfff8b61a),
+                                  )),
+                            ),
+                            const Text(
+                              'Đánh giá',
+                              style: TextStyle(fontSize: 10),
+                            )
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -206,10 +204,10 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 10, right: 10),
+                margin: const EdgeInsets.only(left: 10, right: 10),
                 width: double.infinity,
                 child: GridView.count(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
@@ -218,7 +216,8 @@ class _AccountScreenState extends State<AccountScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           content: Text('Danh sách yêu thích'),
                           duration: Duration(seconds: 1),
                         ));
@@ -226,11 +225,11 @@ class _AccountScreenState extends State<AccountScreen> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Container(
-                          padding: EdgeInsets.only(top: 10, left: 20),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           height: 60,
                           color: Colors.white,
                           child: Column(
-                            children: [
+                            children: const [
                               Align(
                                   alignment: Alignment.topLeft,
                                   child: Icon(
@@ -251,7 +250,8 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           content: Text('Bicoin'),
                           duration: Duration(seconds: 1),
                         ));
@@ -259,11 +259,11 @@ class _AccountScreenState extends State<AccountScreen> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Container(
-                          padding: EdgeInsets.only(top: 10, left: 20),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           height: 60,
                           color: Colors.white,
                           child: Column(
-                            children: [
+                            children: const [
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: ImageIcon(
@@ -285,7 +285,8 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           content: Text('Đơn hàng thường mua'),
                           duration: Duration(seconds: 1),
                         ));
@@ -293,11 +294,11 @@ class _AccountScreenState extends State<AccountScreen> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Container(
-                          padding: EdgeInsets.only(top: 10, left: 20),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           height: 60,
                           color: Colors.white,
                           child: Column(
-                            children: [
+                            children: const [
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: ImageIcon(
@@ -319,7 +320,8 @@ class _AccountScreenState extends State<AccountScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
                           content: Text('Danh sách cửa hàng'),
                           duration: Duration(seconds: 1),
                         ));
@@ -327,11 +329,11 @@ class _AccountScreenState extends State<AccountScreen> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Container(
-                          padding: EdgeInsets.only(top: 10, left: 20),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           height: 60,
                           color: Colors.white,
                           child: Column(
-                            children: [
+                            children: const [
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: ImageIcon(
@@ -369,30 +371,33 @@ class _AccountScreenState extends State<AccountScreen> {
                       borderRadius: BorderRadius.circular(10)),
                   child: Container(
                     color: Colors.white,
-                    margin: EdgeInsets.only(left: 10, right: 10),
+                    margin: const EdgeInsets.only(left: 10, right: 10),
                     child: Column(
                       children: [
                         ListTile(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
                               content: Text('Liên hệ'),
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: ImageIcon(AssetImage('assets/lienhe.png')),
-                          title: Text('Liên hệ'),
+                          leading:
+                              const ImageIcon(AssetImage('assets/lienhe.png')),
+                          title: const Text('Liên hệ'),
                         ),
                         ListTile(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
                               content: Text('Câu hỏi thường gặp'),
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: ImageIcon(AssetImage(
+                          leading: const ImageIcon(AssetImage(
                             'assets/question_icon.png',
                           )),
-                          title: Text('Câu hỏi thường gặp'),
+                          title: const Text('Câu hỏi thường gặp'),
                         ),
                       ],
                     ),
@@ -414,69 +419,80 @@ class _AccountScreenState extends State<AccountScreen> {
                       borderRadius: BorderRadius.circular(10)),
                   child: Container(
                     color: Colors.white,
-                    margin: EdgeInsets.only(left: 10, right: 10),
+                    margin: const EdgeInsets.only(left: 10, right: 10),
                     child: Column(
                       children: [
                         ListTile(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
                               content: Text('Thông báo'),
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: ImageIcon(AssetImage('assets/thongbao.png')),
-                          title: Text('Thông báo'),
+                          leading: const ImageIcon(
+                              AssetImage('assets/thongbao.png')),
+                          title: const Text('Thông báo'),
                         ),
                         ListTile(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
                               content: Text('Địa chỉ nhận hàng'),
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: ImageIcon(AssetImage('assets/diachi.png')),
-                          title: Text('Địa chỉ nhận hàng'),
+                          leading:
+                              const ImageIcon(AssetImage('assets/diachi.png')),
+                          title: const Text('Địa chỉ nhận hàng'),
                         ),
                         ListTile(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
                               content: Text('Giới thiệu'),
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading:
-                              ImageIcon(AssetImage('assets/gioithieu.png')),
-                          title: Text('Giới thiệu'),
+                          leading: const ImageIcon(
+                              AssetImage('assets/gioithieu.png')),
+                          title: const Text('Giới thiệu'),
                         ),
                         ListTile(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
                               content: Text('Đóng góp ý kiến'),
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: ImageIcon(AssetImage('assets/donggop.png')),
-                          title: Text('Đóng góp ý kiến'),
+                          leading:
+                              const ImageIcon(AssetImage('assets/donggop.png')),
+                          title: const Text('Đóng góp ý kiến'),
                         ),
                         ListTile(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
                               content: Text('Đăng xuất'),
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: ImageIcon(AssetImage('assets/dangxuat.png')),
-                          title: Text('Đăng xuất'),
+                          leading: const ImageIcon(
+                              AssetImage('assets/dangxuat.png')),
+                          title: const Text('Đăng xuất'),
                         ),
                         ListTile(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
                               content: Text('Xóa tài khoản'),
                               duration: Duration(seconds: 1),
                             ));
                           },
-                          leading: ImageIcon(AssetImage('assets/xoatk.png')),
-                          title: Text('Xóa tài khoản'),
+                          leading:
+                              const ImageIcon(AssetImage('assets/xoatk.png')),
+                          title: const Text('Xóa tài khoản'),
                         ),
                       ],
                     ),
@@ -485,18 +501,18 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
               Container(
                 width: double.infinity,
-                margin: EdgeInsets.only(right: 10, left: 10, top: 10),
+                margin: const EdgeInsets.only(right: 10, left: 10, top: 10),
                 height: 220,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                         image: AssetImage('assets/2.png'), fit: BoxFit.fill)),
                 child: Column(
                   children: [
                     Container(
                         alignment: Alignment.topLeft,
-                        padding: EdgeInsets.only(top: 30, left: 15),
-                        child: Text(
+                        padding: const EdgeInsets.only(top: 30, left: 15),
+                        child: const Text(
                           'Nhập mã giới thiệu',
                           style: TextStyle(
                               fontSize: 18,
@@ -505,10 +521,10 @@ class _AccountScreenState extends State<AccountScreen> {
                         )),
                     Container(
                         alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(top: 20, left: 15),
+                        padding: const EdgeInsets.only(top: 20, left: 15),
                         child: Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: 150,
                               height: 40,
                               child: TextField(
@@ -516,32 +532,32 @@ class _AccountScreenState extends State<AccountScreen> {
                                   filled: true,
                                   fillColor: Colors.white,
                                   contentPadding:
-                                      EdgeInsets.only(top: 5, left: 5),
+                                      const EdgeInsets.only(top: 5, left: 5),
                                   border: OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                       borderRadius: BorderRadius.circular(15)),
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
-                            Container(
+                            SizedBox(
                               width: 70,
                               height: 40,
-                              child: RaisedButton(
+                              child: MaterialButton(
                                 onPressed: () {
                                   ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(
+                                      .showSnackBar(const SnackBar(
                                     content: Text('thành công'),
                                     duration: Duration(seconds: 1),
                                   ));
                                 },
-                                color: Color(0xffF12C2C),
+                                color: const Color(0xffF12C2C),
                                 textColor: Colors.white,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                                child: Text('Gửi'),
+                                child: const Text('Gửi'),
                               ),
                             )
                           ],
@@ -550,19 +566,19 @@ class _AccountScreenState extends State<AccountScreen> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Row(
                         children: [
-                          Text(
+                          const Text(
                             'Mã giới thiệu của bạn',
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                           IconButton(
                             color: Colors.white,
-                            icon: ImageIcon(
+                            icon: const ImageIcon(
                               AssetImage('assets/question_icon.png'),
                               size: 30,
                             ),
                             onPressed: () {
                               ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
+                                  .showSnackBar(const SnackBar(
                                 content: Text('Mã giới thiệu của bạn'),
                                 duration: Duration(seconds: 1),
                               ));
@@ -572,14 +588,14 @@ class _AccountScreenState extends State<AccountScreen> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: 15),
+                      padding: const EdgeInsets.only(left: 15),
                       alignment: Alignment.bottomLeft,
                       child: Row(
                         children: [
                           IconButton(
                               onPressed: () {
                                 ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
+                                    .showSnackBar(const SnackBar(
                                   content: Text('đã sao chép'),
                                   duration: Duration(seconds: 1),
                                 ));
@@ -587,10 +603,10 @@ class _AccountScreenState extends State<AccountScreen> {
                               icon: ImageIcon(
                                   color: Colors.white,
                                   AssetImage('assets/copyfileIcon.png'))),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          const Text(
                             '4535667',
                             style: TextStyle(
                                 fontSize: 18,
@@ -603,7 +619,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               )
             ],

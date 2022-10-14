@@ -6,9 +6,12 @@ import 'Controllers/product_controller.dart';
 void main() {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => ProductController(),)
+      ChangeNotifierProvider(
+        create: (context) => ProductController(),
+      ),
+
     ],
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
@@ -22,6 +25,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen());
+    return const MaterialApp(
+        debugShowCheckedModeBanner: false, home: HomeScreen());
   }
 }

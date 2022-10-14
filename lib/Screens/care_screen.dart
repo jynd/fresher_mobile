@@ -10,10 +10,8 @@ class CareScreen extends StatefulWidget {
 class _CareScreenState extends State<CareScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Đang phát triển :))'),
-      ),
+    return const Center(
+      child: Text('Gang phát triển :))'),
     );
   }
 }
