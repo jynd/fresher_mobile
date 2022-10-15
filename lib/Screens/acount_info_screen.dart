@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:training_flutter/Controllers/product_controller.dart';
 import 'package:training_flutter/Models/product_model.dart';
@@ -50,6 +51,22 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
     age = date - selectedYear;
   }
 
+  void requestPicturePermisstion() async {
+    var status = await Permission.storage.status;
+    if (status.isGranted) {
+      pickImage(ImageSource.gallery);
+      print("Permission is granted");
+    } else if (status.isDenied) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Hãy cấp quyền để chọn ảnh'),
+        duration: Duration(seconds: 1),
+      ));
+      if (await Permission.storage.request().isGranted) {
+        print('Permission was granted');
+      }
+    }
+  }
+
   Future pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -76,6 +93,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
       _sexeTextField.text = _read.list[0].sexe;
       _tlnumberTextField.text = _read.list[0].telenumber.toString();
       _nameTextField.text = _read.list[0].name;
+      // _nameChildTextField.text = _read.list[0].listcon[0].nameChild;
     });
     super.initState();
   }
@@ -120,14 +138,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                         left: 200,
                         child: MaterialButton(
                           height: 50,
-                          onPressed: () {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text('Chọn hình đại diện'),
-                              duration: Duration(seconds: 1),
-                            ));
-                            pickImage(ImageSource.gallery);
-                          },
+                          onPressed: requestPicturePermisstion,
                           color: const Color(0xffF12C2C),
                           shape: const CircleBorder(),
                           child: const Icon(

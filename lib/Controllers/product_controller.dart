@@ -6,13 +6,13 @@ class ProductController extends ChangeNotifier {
   // List<ProductModel> get list => _list;
   List<TextEditingController> nameChildAddcontroller = [];
 
+  // List<ChildModel> listcon = [
+  //
+  // ];
   List<ProductModel> list = [
-    ProductModel('Tô Ny Sờ Tắc',DateTime.utc(2002, 09, 23), 'Nam', 'stack@gmail.com',
-        'New York', 08112313131)
+    ProductModel('Tô Ny Sờ Tắc', DateTime.utc(2002, 09, 23), 'Nam',
+        'stack@gmail.com', 'New York', 08112313131)
   ];
-
-
-
   // void update(int index, String name, DateTime bir, String emai, String adr, String sexe, int tlnumber){
   //     int index = list.indexWhere((element) => element?.name == name);
   //     list[index].birthday = bir;
