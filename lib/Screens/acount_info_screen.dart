@@ -63,6 +63,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
       ));
       if (await Permission.storage.request().isGranted) {
         print('Permission was granted');
+        pickImage(ImageSource.gallery);
       }
     }
   }
@@ -128,7 +129,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                           ))
                         : ClipOval(
                             child: Image.network(
-                            "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/35/IronMan-EndgameProfile.jpg/revision/latest/top-crop/width/360/height/360?cb=20190423175213",
+                            _watch.list[0].avatar ?? "",
                             width: 130,
                             height: 130,
                             fit: BoxFit.cover,

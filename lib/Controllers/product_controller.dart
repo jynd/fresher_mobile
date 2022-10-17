@@ -10,7 +10,7 @@ class ProductController extends ChangeNotifier {
   //
   // ];
   List<ProductModel> list = [
-    ProductModel('Tô Ny Sờ Tắc', DateTime.utc(2002, 09, 23), 'Nam',
+    ProductModel('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiUSN4K9DpzOG_bdneob8ysK5ZSu1efzOvCw&usqp=CAU','Tô Ny Sờ Tắc', DateTime.utc(2002, 09, 23), 'Nam',
         'stack@gmail.com', 'New York', 08112313131)
   ];
   // void update(int index, String name, DateTime bir, String emai, String adr, String sexe, int tlnumber){

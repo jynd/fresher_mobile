@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
+
 class ProductModel {
+  String? avatar;
   String name;
   DateTime birthday;
   String sexe;
@@ -7,7 +10,7 @@ class ProductModel {
   int telenumber;
   // List<ChildModel> listcon;
 
-  ProductModel(this.name, this.birthday, this.sexe, this.email, this.address,
+  ProductModel(this.avatar,this.name, this.birthday, this.sexe, this.email, this.address,
       this.telenumber);
 }
 

@@ -25,9 +25,9 @@ class _AccountScreenState extends State<AccountScreen> {
               Container(
                 color: Colors.white,
                 child: ListTile(
-                  leading: const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://static.wikia.nocookie.net/marvelcinematicuniverse/images/3/35/IronMan-EndgameProfile.jpg/revision/latest/top-crop/width/360/height/360?cb=20190423175213'),
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(_watch.list[0].avatar ?? ""
+                        ),
                   ),
                   title: Text(
                     _watch.list[0].name,
