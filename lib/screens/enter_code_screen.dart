@@ -17,7 +17,6 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     focusNode = FocusNode();
   }
@@ -58,7 +57,6 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).pop;
-                          print('object');
                         },
                         child: const Icon(Icons.close),
                       ),
@@ -75,7 +73,6 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
                         decoration: InputDecoration(
                             suffixIcon: GestureDetector(
                               onTap: () {
-                                print('Arrow_forward');
                                 _validateForm();
                               },
                               child: const Icon(Icons.arrow_forward),
@@ -96,14 +93,6 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
             ),
           ),
         ));
-  }
-
-  void _showKeyboard() {
-    focusNode.requestFocus();
-  }
-
-  void _dismissKeyboard() {
-    focusNode.unfocus();
   }
 
   void _validateForm() {
