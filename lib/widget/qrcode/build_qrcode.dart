@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../../controller/controller.dart';
+import '../../controller/controller_qrcode.dart';
 import 'disPlay_result_qrcode.dart';
 import 'display_having_product_qrcode.dart';
 
@@ -15,8 +16,8 @@ class BuildQrCode extends StatefulWidget {
 }
 
 class _ScannerQRProductState extends State<BuildQrCode> {
-  Controller get readScannerProduct => context.read<Controller>();
-  Controller get watchScannerProduct => context.watch<Controller>();
+  ControllerQrCode get readScannerProduct => context.read<ControllerQrCode>();
+  ControllerQrCode get watchScannerProduct => context.watch<ControllerQrCode>();
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   @override
   void reassemble() {
@@ -36,8 +37,8 @@ class _ScannerQRProductState extends State<BuildQrCode> {
         alignment: Alignment.center,
         children: [
           buildQRView(context),
-          const Positioned(bottom: 150, child: DisPlayResultQrCode()),
-          const Positioned(bottom: 10, child: DisplayHavingProductQrCode()),
+          const Positioned(bottom: 170, child: DisPlayResultQrCode()),
+          // const Positioned(bottom: 10, child: DisplayHavingProductQrCode()),
 
           // Positioned(bottom: 100, child: cart())
         ],
@@ -55,7 +56,7 @@ class _ScannerQRProductState extends State<BuildQrCode> {
           cutOutSize: MediaQuery.of(context).size.width * 0.7),
       key: qrKey,
       onQRViewCreated: (QRViewController controller) =>
-          readScannerProduct.onQRViewCreatedQrCode(controller),
+          readScannerProduct.onQRViewCreated(controller),
     );
   }
 

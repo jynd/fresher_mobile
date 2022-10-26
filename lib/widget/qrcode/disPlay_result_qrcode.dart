@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:training_flutter/controller/controller_qrcode.dart';
+import 'package:training_flutter/screens/qr_code_store_screen.dart';
 import 'package:training_flutter/widget/qrcode/display_product_scanned_qrcode.dart';
 import '../../controller/controller.dart';
 import '../../screens/enter_code_screen.dart';
+import '../../theme/font.dart';
 import '../barccode/display_product_scanned.dart';
 
 class DisPlayResultQrCode extends StatefulWidget {
@@ -14,17 +17,15 @@ class DisPlayResultQrCode extends StatefulWidget {
 }
 
 class _DisPlayResultState extends State<DisPlayResultQrCode> {
-  Controller get readScannerProduct => context.read<Controller>();
-  Controller get watchScannerProduct => context.watch<Controller>();
+  ControllerQrCode get readScannerProduct => context.read<ControllerQrCode>();
+  ControllerQrCode get watchScannerProduct => context.watch<ControllerQrCode>();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: disPlayResult(),
-    );
+    return Container(child: disPlayResult(context));
   }
 
-  Widget disPlayResult() {
-    if ((watchScannerProduct.resultQrCode != null)) {
+  Widget disPlayResult(BuildContext context) {
+    if (watchScannerProduct.mListQrCode.isNotEmpty) {
       return const DisplayProductScannedQrCode();
     } else {
       return Column(
@@ -50,8 +51,8 @@ class _DisPlayResultState extends State<DisPlayResultQrCode> {
                     margin: const EdgeInsets.only(left: 20),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const EnterCodeScreen()));
+                        readScannerProduct.showBottomSheet(context);
+                        readScannerProduct.controller?.pauseCamera();
                       },
                       child: const Text(
                         'Quét mã sản phẩm ',

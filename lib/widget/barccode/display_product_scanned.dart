@@ -25,7 +25,7 @@ class _DisplayCartState extends State<DisplayProductScanned> {
   }
 
   Widget cart() {
-    return (watchScannerProduct.resultBarCode != null)
+    return (readScannerProduct.mList.isNotEmpty)
         ? Container(
             margin: const EdgeInsets.only(left: 8, top: 100),
             width: 352,
@@ -35,7 +35,7 @@ class _DisplayCartState extends State<DisplayProductScanned> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 30,
+                  height: 17,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,8 +50,7 @@ class _DisplayCartState extends State<DisplayProductScanned> {
                     Expanded(
                       child: IconButton(
                           onPressed: () {
-                            Navigator.of(context).pop;
-                            print('asdd');
+                            readScannerProduct.clearProduct();
                           },
                           icon: const Icon(Icons.close)),
                     )
@@ -109,7 +108,8 @@ class _DisplayCartState extends State<DisplayProductScanned> {
                 Container(
                   width: 256,
                   height: 36,
-                  margin: const EdgeInsets.only(right: 20, left: 20),
+                  margin:
+                      const EdgeInsets.only(right: 20, left: 20, bottom: 20),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: colorButton),
                     onPressed: () async {
@@ -130,7 +130,7 @@ class _DisplayCartState extends State<DisplayProductScanned> {
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           )

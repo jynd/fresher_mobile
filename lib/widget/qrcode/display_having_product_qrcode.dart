@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
 import '../../controller/controller.dart';
+import '../../controller/controller_qrcode.dart';
 import '../../theme/color.dart';
 
 class DisplayHavingProductQrCode extends StatefulWidget {
@@ -15,8 +16,8 @@ class DisplayHavingProductQrCode extends StatefulWidget {
 }
 
 class _DisplayCartState extends State<DisplayHavingProductQrCode> {
-  Controller get readScannerProduct => context.read<Controller>();
-  Controller get watchScannerProduct => context.watch<Controller>();
+  ControllerQrCode get readScannerProduct => context.read<ControllerQrCode>();
+  ControllerQrCode get watchScannerProduct => context.watch<ControllerQrCode>();
 
   @override
   Widget build(BuildContext context) {

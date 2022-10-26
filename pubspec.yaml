@@ -45,6 +45,7 @@ dependencies:
       url: https://github.com/OOTPAppsDotCom/qr_code_scanner.git
   flutter_barcode_scanner: ^2.0.0
   permission_handler: ^10.1.0
+  fluttertoast: ^8.1.1
  
 
 dev_dependencies:

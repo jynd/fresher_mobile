@@ -35,76 +35,96 @@ class _BuyAtStoreScreenState extends State<BuyAtStoreScreen> {
           'Mua tại cửa hàng ',
         ),
       ),
-      body: Column(
-        children: [
-          ListTile(
-            leading: SvgPicture.asset('images/store.svg'),
-            title: const Text('Địa chỉ nhận hàng'),
-            subtitle: const Text('Bibo Mart Trung Kính -193 Trung Kính'),
-            trailing: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.navigate_next),
-            ),
-          ),
-          ListTile(
-            leading: SvgPicture.asset('images/sale.svg'),
-            title: const Text('Ưu đãi của bạn'),
-            subtitle: const Text(
-              'Mua sắm càng nhiều, ưu đãi càng "khủng"',
-              style: TextStyle(color: Colors.red),
-            ),
-            trailing: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.navigate_next),
-            ),
-          ),
-          const SizedBox(height: 40),
-          Container(
-            width: 256,
-            height: 36,
-            margin: const EdgeInsets.only(right: 20, left: 20),
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: colorButton),
-                onPressed: () {
-                  print('cmmm');
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ScannerQRProduct()));
-                },
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Padding(padding: EdgeInsets.only(left: 10)),
-                    SvgPicture.asset('images/icon_scanner.svg'),
-                    const Padding(padding: EdgeInsets.only(left: 30)),
-                    const Text(
-                      'Quét mã sản phẩm',
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                )),
-          ),
-          const SizedBox(height: 500),
-          Expanded(
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Expanded(
               child: Container(
-            padding: const EdgeInsets.all(10),
-            width: MediaQuery.maybeOf(context)?.size.width,
-            height: 150,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                const Text('Giỏ hàng',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                (watchScannerProduct.resultBarCode != null)
-                    ? Text(
-                        'Bạn đang có ${watchScannerProduct.getCount} sản phẩm trong giỏ hàng',
-                        style: TextStyle(fontWeight: FontWeight.w400))
-                    : const Text('Bạn đang có 0 sản phẩm trong giỏ hàng',
-                        style: TextStyle(fontWeight: FontWeight.w400))
-              ],
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: SvgPicture.asset('images/store.svg'),
+                      title: const Text('Địa chỉ nhận hàng'),
+                      subtitle:
+                          const Text('Bibo Mart Trung Kính -193 Trung Kính'),
+                      trailing: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.navigate_next),
+                      ),
+                    ),
+                    ListTile(
+                      leading: SvgPicture.asset('images/sale.svg'),
+                      title: const Text('Ưu đãi của bạn'),
+                      subtitle: const Text(
+                        'Mua sắm càng nhiều, ưu đãi càng "khủng"',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      trailing: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.navigate_next),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    Container(
+                      width: 256,
+                      height: 36,
+                      margin: const EdgeInsets.only(right: 20, left: 20),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: colorButton),
+                          onPressed: () {
+                            print('asdknsdj4${readController.mList.length}');
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const ScannerQRProduct()));
+                          },
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Padding(padding: EdgeInsets.only(left: 10)),
+                              SvgPicture.asset('images/icon_scanner.svg'),
+                              const Padding(padding: EdgeInsets.only(left: 30)),
+                              const Text(
+                                'Quét mã sản phẩm',
+                                textAlign: TextAlign.center,
+                              )
+                            ],
+                          )),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ))
-        ],
+            Container(
+              color: Colors.white,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      width: MediaQuery.maybeOf(context)?.size.width,
+                      height: 80,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const Text('Giỏ hàng',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          (watchScannerProduct.resultBarCode != null)
+                              ? Text(
+                                  'Bạn đang có ${watchScannerProduct.getCount} sản phẩm trong giỏ hàng',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w400))
+                              : const Text(
+                                  'Bạn đang có 0 sản phẩm trong giỏ hàng',
+                                  style: TextStyle(fontWeight: FontWeight.w400))
+                        ],
+                      ),
+                    )
+                  ]),
+            )
+          ],
+        ),
       ),
     );
   }

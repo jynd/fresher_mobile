@@ -26,7 +26,7 @@ class _DisPlayResultState extends State<DisPlayResult> {
   }
 
   Widget disPlayResult() {
-    if ((watchScannerProduct.resultBarCode != null)) {
+    if (watchScannerProduct.mList.isNotEmpty) {
       return const DisplayProductScanned();
     } else {
       return Column(
@@ -52,8 +52,8 @@ class _DisPlayResultState extends State<DisPlayResult> {
                     margin: const EdgeInsets.only(left: 20),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const EnterCodeScreen()));
+                        readScannerProduct.showBottomSheet(context);
+                        readScannerProduct.controller?.pauseCamera();
                       },
                       child: const Text(
                         'Quét mã sản phẩm ',

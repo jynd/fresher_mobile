@@ -6,37 +6,37 @@ import 'package:training_flutter/model/qrcode.dart';
 import 'package:training_flutter/screens/buy_at_store_screen.dart';
 import '../theme/font.dart';
 
-class Controller extends ChangeNotifier {
-  Barcode? resultBarCode;
+class ControllerQrCode extends ChangeNotifier {
+  Barcode? resultQrCode;
 
   QRViewController? controller;
   bool isDeCrease = true;
-  List<Barcodee> mList = [];
+  List<QrCode> mListQrCode = [];
 
   final _formKey = GlobalKey<FormState>();
 
   void onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      resultBarCode = scanData;
-      if (resultBarCode != null) {
+      resultQrCode = scanData;
+      if (resultQrCode != null) {
         controller.pauseCamera();
         addBarcode();
-        print('lsitt${mList.length}');
+        print('lsitt${mListQrCode.length}');
       }
       notifyListeners();
     });
   }
 
   void addBarcode() {
-    Barcodee qrCode = Barcodee(barcode: resultBarCode, controller: controller);
-    mList.add(qrCode);
+    QrCode qrCode = QrCode(barcode: resultQrCode, controller: controller);
+    mListQrCode.add(qrCode);
     notifyListeners();
   }
 
   void clearProduct() {
     controller?.resumeCamera();
-    mList.clear();
+    mListQrCode.clear();
     notifyListeners();
   }
 
@@ -58,7 +58,7 @@ class Controller extends ChangeNotifier {
   }
 
   void resumeCamera() {
-    if (resultBarCode != null) {
+    if (resultQrCode != null) {
       controller?.resumeCamera();
     }
 
