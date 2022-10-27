@@ -18,6 +18,7 @@ class DisplayProductScannedQrCode extends StatefulWidget {
 class _DisplayCartState extends State<DisplayProductScannedQrCode> {
   ControllerQrCode get readScannerProduct => context.read<ControllerQrCode>();
   ControllerQrCode get watchScannerProduct => context.watch<ControllerQrCode>();
+  DateTime dateTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,29 +31,33 @@ class _DisplayCartState extends State<DisplayProductScannedQrCode> {
         ? Container(
             margin: const EdgeInsets.only(left: 8, top: 100),
             width: 352,
-            height: 228,
+            height: 350,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8), color: Colors.white),
             child: Column(
               children: [
                 const SizedBox(
-                  height: 30,
+                  height: 10,
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(left: 100),
+                      margin: const EdgeInsets.only(left: 100),
                       child: const Text(
                         'Cửa hàng đã quét',
                         style: TextStyle(fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    IconButton(
-                        onPressed: () {
-                          readScannerProduct.clearProduct();
-                        },
-                        icon: const Icon(Icons.close)),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: IconButton(
+                          onPressed: () {
+                            readScannerProduct.clearProduct();
+                          },
+                          icon: const Icon(Icons.close)),
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -62,14 +67,15 @@ class _DisplayCartState extends State<DisplayProductScannedQrCode> {
                 Image.network(
                   'https://th.bing.com/th/id/OIP.ypB0bokOy82FVhKFg2fvUQHaEo?w=289&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7',
                   width: MediaQuery.of(context).size.width,
-                  height: 78,
+                  height: 200,
+                  fit: BoxFit.fill,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 Flexible(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       const Text(

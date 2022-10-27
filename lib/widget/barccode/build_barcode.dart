@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../../controller/controller.dart';
+import '../../model/bar_code.dart';
 import 'disPlay_result.dart';
 import 'display_having_product.dart';
 
@@ -16,6 +17,7 @@ class BuildBarcode extends StatefulWidget {
 class _ScannerQRProductState extends State<BuildBarcode> {
   Controller get readScannerProduct => context.read<Controller>();
   Controller get watchScannerProduct => context.watch<Controller>();
+  Barcodee get readBarcodeController => context.read<Barcodee>();
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   @override
   void reassemble() {

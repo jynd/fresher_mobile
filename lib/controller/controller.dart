@@ -113,14 +113,13 @@ class Controller extends ChangeNotifier {
                   bottom: MediaQuery.of(ctx).viewInsets.bottom + 15),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Row(
                     children: [
                       IconButton(
                           onPressed: () {
                             Navigator.of(ctx).pop;
-                            controller?.resumeCamera();
                           },
                           icon: const Icon(Icons.close)),
                       const Text(

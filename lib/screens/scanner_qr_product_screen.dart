@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../controller/controller.dart';
+import '../model/bar_code.dart';
 import '../theme/color.dart';
 import '../widget/barccode/build_barcode.dart';
 
@@ -15,12 +16,13 @@ class ScannerQRProduct extends StatefulWidget {
 
 class _ScannerQRProductState extends State<ScannerQRProduct> {
   Controller get readScannerProduct => context.read<Controller>();
+  Barcodee get readBarcodeController => context.read<Barcodee>();
+  Barcodee get watchBarcodeController => context.watch<Barcodee>();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    readScannerProduct.resumeCamera();
   }
 
   @override
@@ -37,9 +39,12 @@ class _ScannerQRProductState extends State<ScannerQRProduct> {
               margin: const EdgeInsets.only(right: 10),
               child: GestureDetector(
                 onTap: () async {
-                  await readScannerProduct.controller?.toggleFlash();
+                  readBarcodeController.isToggleFlash();
+                  readScannerProduct.controller?.toggleFlash();
                 },
-                child: SvgPicture.asset('images/flash_pro.svg'),
+                child: watchBarcodeController.isToggle
+                    ? SvgPicture.asset('images/flash.svg')
+                    : SvgPicture.asset('images/flash_pro.svg'),
               ),
             )
           ],
