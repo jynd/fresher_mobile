@@ -49,104 +49,105 @@ class _DynamicWidgetState extends State<DynamicWidget> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: IconButton(
-                  icon: isExpanded
-                      ? const Icon(Icons.expand_more)
-                      : const Icon(Icons.expand_less),
+                  icon: const Icon(
+                    Icons.highlight_remove,
+                    color: Color(0xffF12C2C),
+                  ),
                   onPressed: () {
-                    setState(() {
-                      isExpanded = !isExpanded;
-                    });
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Đã xóa con thứ ${widget.index! + 2}!"),
+                      duration: const Duration(seconds: 1),
+                    ));
+                    _read.removeChild(widget.index!);
                   },
                 ),
               ),
             ),
           ],
         ),
-        if (!isExpanded)
-          Column(
-            children: [
-              const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Họ và tên',
-                    style: TextStyle(color: Colors.grey),
-                  )),
-              buildTextField(
-                  "Họ và tên", false, _read.nameChildAddcontroller[widget.index!]),
-              const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Ngày sinh',
-                    style: TextStyle(color: Colors.grey),
-                  )),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: TextFormField(
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Xin điền đủ thông tin!';
-                    }
-                    return null;
-                  },
-                  controller: _dateController,
-                  decoration: const InputDecoration(
-                    suffixIcon: ImageIcon(
-                      AssetImage('assets/datetime.png'),
-                    ),
-                    fillColor: Color(0xfffbfbfb),
-                    filled: true,
-                    border: InputBorder.none,
-                    contentPadding:
-                        EdgeInsets.only(bottom: 5, left: 5, top: 15),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintText: 'Ngày Sinh',
+        Column(
+          children: [
+            const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Họ và tên',
+                  style: TextStyle(color: Colors.grey),
+                )),
+            buildTextField("Họ và tên", false,
+                _read.nameChildAddcontroller[widget.index!]),
+            const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Ngày sinh',
+                  style: TextStyle(color: Colors.grey),
+                )),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Xin điền đủ thông tin!';
+                  }
+                  return null;
+                },
+                controller: _dateController,
+                decoration: const InputDecoration(
+                  suffixIcon: ImageIcon(
+                    AssetImage('assets/datetime.png'),
                   ),
-                  onTap: () async {
-                    DateTime? pickeddate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime.now());
-                    if (pickeddate != null) {
-                      setState(() {
-                        _dateController.text =
-                            DateFormat('dd/MM/yyyy').format(pickeddate);
-                      });
-                    }
-                  },
+                  fillColor: Color(0xfffbfbfb),
+                  filled: true,
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.only(bottom: 5, left: 5, top: 15),
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  hintText: 'Ngày Sinh',
                 ),
-              ),
-              const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Giới tính',
-                    style: TextStyle(color: Colors.grey),
-                  )),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.only(bottom: 30),
-                child: DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    fillColor: Color(0xfffbfbfb),
-                    filled: true,
-                    border: InputBorder.none,
-                  ),
-                  items: listItem.map((String newValue) {
-                    return DropdownMenuItem<String>(
-                      value: newValue,
-                      child: Text(newValue),
-                    );
-                  }).toList(),
-                  onChanged: (newValueSelected) {
+                onTap: () async {
+                  DateTime? pickeddate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime.now());
+                  if (pickeddate != null) {
                     setState(() {
-                      currentItemSelected = newValueSelected!;
+                      _dateController.text =
+                          DateFormat('dd/MM/yyyy').format(pickeddate);
                     });
-                  },
-                  value: currentItemSelected,
-                ),
+                  }
+                },
               ),
-            ],
-          ),
+            ),
+            const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Giới tính',
+                  style: TextStyle(color: Colors.grey),
+                )),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.only(bottom: 30),
+              child: DropdownButtonFormField<String>(
+                decoration: const InputDecoration(
+                  fillColor: Color(0xfffbfbfb),
+                  filled: true,
+                  border: InputBorder.none,
+                ),
+                items: listItem.map((String newValue) {
+                  return DropdownMenuItem<String>(
+                    value: newValue,
+                    child: Text(newValue),
+                  );
+                }).toList(),
+                onChanged: (newValueSelected) {
+                  setState(() {
+                    currentItemSelected = newValueSelected!;
+                  });
+                },
+                value: currentItemSelected,
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }

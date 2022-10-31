@@ -21,6 +21,7 @@ class AcountInfoScreen extends StatefulWidget {
 class _AcountInfoScreenState extends State<AcountInfoScreen> {
   File? image;
   var currentItemSelected;
+  var currentItemSelected2;
   var formatDate = DateFormat("dd/MM/yyyy");
   var formatDate2 = DateFormat("yyyy");
   var date = DateTime.now().year;
@@ -31,7 +32,6 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
   String itemsexe = "";
   var listItem = ['Nam', 'Nữ'];
   bool isExpanded = false;
-  final List<DynamicWidget> listDynamic = [];
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _emailTextField = TextEditingController();
   final TextEditingController _sexeTextField = TextEditingController();
@@ -42,11 +42,6 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
   final TextEditingController _dateChildController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   late int selectedYear = _read.list[0].birthday.year;
-  addDynamic() {
-    listDynamic.add(const DynamicWidget());
-    setState(() {});
-  }
-
   void caculateAge() {
     age = date - selectedYear;
   }
@@ -94,7 +89,9 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
       _sexeTextField.text = _read.list[0].sexe;
       _tlnumberTextField.text = _read.list[0].telenumber.toString();
       _nameTextField.text = _read.list[0].name;
-      // _nameChildTextField.text = _read.list[0].listcon[0].nameChild;
+      _nameChildTextField.text = _read.list[0].listcon[0].nameChild;
+      _dateChildController.text = formatDate.format(
+          DateTime.parse(_read.list[0].listcon[0].birthdayChild.toString()));
     });
     super.initState();
   }
@@ -199,11 +196,9 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                                 firstDate: DateTime(1960),
                                 lastDate: DateTime.now());
                             if (pickeddate != null) {
-                              setState(() {
-                                _dateController.text =
-                                    DateFormat('dd/MM/yyyy').format(pickeddate);
-                                selectedYear = pickeddate.year;
-                              });
+                              _dateController.text =
+                                  DateFormat('dd/MM/yyyy').format(pickeddate);
+                              selectedYear = pickeddate.year;
                             }
                           },
                         ),
@@ -231,9 +226,9 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                             );
                           }).toList(),
                           onChanged: (newValueSelected) {
-                            setState(() {
-                              currentItemSelected = newValueSelected!;
-                            });
+                            // setState(() {
+                            currentItemSelected = newValueSelected!;
+                            // });
                           },
                           value: currentItemSelected,
                         ),
@@ -265,7 +260,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                           }
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       const Align(
@@ -304,11 +299,11 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                           }
                         },
                       ),
-                      SizedBox(
-                        height: 30,
+                      const SizedBox(
+                        height: 40,
                       ),
-                      Row(children: [
-                        const Expanded(
+                      Row(children: const [
+                        Expanded(
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -317,109 +312,113 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: IconButton(
-                              icon: isExpanded
-                                  ? const Icon(Icons.expand_more)
-                                  : const Icon(Icons.expand_less),
-                              onPressed: () {
-                                setState(() {
-                                  isExpanded = !isExpanded;
-                                });
+                        // Expanded(
+                        //   child: Align(
+                        //     alignment: Alignment.centerRight,
+                        //     child: IconButton(
+                        //       icon: isExpanded
+                        //           ? const Icon(Icons.expand_more)
+                        //           : const Icon(Icons.expand_less),
+                        //       onPressed: () {
+                        //         setState(() {
+                        //           isExpanded = !isExpanded;
+                        //         });
+                        //       },
+                        //     ),
+                        //   ),
+                        // ),
+                      ]),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Column(
+                        children: [
+                          const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Họ và tên',
+                                style: TextStyle(color: Colors.grey),
+                              )),
+                          buildTextField(
+                              "Họ và tên", false, _nameChildTextField),
+                          const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Ngày sinh',
+                                style: TextStyle(color: Colors.grey),
+                              )),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 30),
+                            child: TextFormField(
+                              controller: _dateChildController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Xin điền đủ thông tin!';
+                                }
+                                return null;
+                              },
+                              decoration: const InputDecoration(
+                                suffixIcon: ImageIcon(
+                                  AssetImage('assets/datetime.png'),
+                                ),
+                                fillColor: Color(0xfffbfbfb),
+                                filled: true,
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.only(
+                                    bottom: 5, left: 5, top: 15),
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                hintText: 'Ngày Sinh',
+                              ),
+                              onTap: () async {
+                                DateTime? pickeddate = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime.now());
+                                if (pickeddate != null) {
+                                  // setState(() {
+                                  _dateChildController.text =
+                                      DateFormat('dd/MM/yyyy')
+                                          .format(pickeddate);
+                                  // });
+                                }
                               },
                             ),
                           ),
-                        ),
-                      ]),
-                      if (!isExpanded)
-                        Column(
-                          children: [
-                            const Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'Họ và tên',
-                                  style: TextStyle(color: Colors.grey),
-                                )),
-                            buildTextField(
-                                "Họ và tên", false, _nameChildTextField),
-                            const Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'Ngày sinh',
-                                  style: TextStyle(color: Colors.grey),
-                                )),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 30),
-                              child: TextFormField(
-                                controller: _dateChildController,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Xin điền đủ thông tin!';
-                                  }
-                                  return null;
-                                },
-                                decoration: const InputDecoration(
-                                  suffixIcon: ImageIcon(
-                                    AssetImage('assets/datetime.png'),
-                                  ),
-                                  fillColor: Color(0xfffbfbfb),
-                                  filled: true,
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.only(
-                                      bottom: 5, left: 5, top: 15),
-                                  floatingLabelBehavior:
-                                      FloatingLabelBehavior.always,
-                                  hintText: 'Ngày Sinh',
-                                ),
-                                onTap: () async {
-                                  DateTime? pickeddate = await showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(2000),
-                                      lastDate: DateTime.now());
-                                  if (pickeddate != null) {
-                                    setState(() {
-                                      _dateChildController.text =
-                                          DateFormat('dd/MM/yyyy')
-                                              .format(pickeddate);
-                                    });
-                                  }
-                                },
+                          const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Giới tính',
+                                style: TextStyle(color: Colors.grey),
+                              )),
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.only(bottom: 30),
+                            child: DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                hintText: _watch.list[0].listcon[0].sexeChild,
+                                fillColor: const Color(0xfffbfbfb),
+                                filled: true,
+                                hintStyle: const TextStyle(color: Colors.black),
+                                border: InputBorder.none,
                               ),
+                              items: listItem.map((String newValue) {
+                                return DropdownMenuItem<String>(
+                                  value: newValue,
+                                  child: Text(newValue),
+                                );
+                              }).toList(),
+                              onChanged: (newValueSelected) {
+                                // setState(() {
+                                currentItemSelected2 = newValueSelected!;
+                                // });
+                              },
+                              value: currentItemSelected2,
                             ),
-                            const Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'Giới tính',
-                                  style: TextStyle(color: Colors.grey),
-                                )),
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.only(bottom: 30),
-                              child: DropdownButtonFormField<String>(
-                                decoration: const InputDecoration(
-                                  fillColor: Color(0xfffbfbfb),
-                                  filled: true,
-                                  border: InputBorder.none,
-                                ),
-                                items: listItem.map((String newValue) {
-                                  return DropdownMenuItem<String>(
-                                    value: newValue,
-                                    child: Text(newValue),
-                                  );
-                                }).toList(),
-                                onChanged: (newValueSelected) {
-                                  setState(() {
-                                    currentItemSelected = newValueSelected!;
-                                  });
-                                },
-                                value: currentItemSelected,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
                       SizedBox(
                         width: double.infinity,
                         child: Column(
@@ -429,7 +428,7 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                             ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: listDynamic.length,
+                              itemCount: _read.listDynamic.length,
                               itemBuilder: (_, index) =>
                                   DynamicWidget(index: index),
                             )
@@ -451,9 +450,10 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                                       color: Color(0xffF12C2C)),
                                   borderRadius: BorderRadius.circular(10)),
                               onPressed: () {
-                                addDynamic();
+                                _read.addDynamic();
                                 _nameChildTextField.text = '';
-                                // _read.nameChildAddcontroller.clear();
+                                // _read.Clear();
+                                print(_read.nameChildAddcontroller);
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

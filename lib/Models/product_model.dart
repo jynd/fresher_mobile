@@ -8,16 +8,17 @@ class ProductModel {
   String email;
   String address;
   int telenumber;
-  // List<ChildModel> listcon;
+  final List<ChildModel> listcon;
 
-  ProductModel(this.avatar,this.name, this.birthday, this.sexe, this.email, this.address,
-      this.telenumber);
+  ProductModel(this.avatar, this.name, this.birthday, this.sexe, this.email,
+      this.address, this.telenumber,
+      [this.listcon = const <ChildModel>[]]);
 }
 
-// class ChildModel {
-//   String nameChild;
-//   DateTime birthdayChild;
-//   String sexeChild;
-//
-//   ChildModel(this.nameChild, this.birthdayChild, this.sexeChild);
-// }
+class ChildModel {
+  String nameChild;
+  DateTime birthdayChild;
+  String sexeChild;
+
+  ChildModel(this.nameChild, this.birthdayChild, this.sexeChild);
+}
