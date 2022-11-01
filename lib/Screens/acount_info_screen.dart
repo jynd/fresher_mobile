@@ -20,6 +20,7 @@ class AcountInfoScreen extends StatefulWidget {
 
 class _AcountInfoScreenState extends State<AcountInfoScreen> {
   File? image;
+  late int i = 2;
   var currentItemSelected;
   var currentItemSelected2;
   var formatDate = DateFormat("dd/MM/yyyy");
@@ -450,9 +451,12 @@ class _AcountInfoScreenState extends State<AcountInfoScreen> {
                                       color: Color(0xffF12C2C)),
                                   borderRadius: BorderRadius.circular(10)),
                               onPressed: () {
-                                _read.addDynamic();
-                                _nameChildTextField.text = '';
+                                i++;
+                                _read.addDynamic(
+                                    _nameChildTextField,
+                                    _read.index);
                                 // _read.Clear();
+                                print(_read.index);
                                 print(_read.nameChildAddcontroller);
                               },
                               child: Row(

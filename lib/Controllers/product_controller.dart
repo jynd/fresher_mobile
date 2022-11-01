@@ -5,10 +5,16 @@ import 'package:training_flutter/Widgets/add_children.dart';
 class ProductController extends ChangeNotifier {
   // final List<ProductModel> _list = <ProductModel>[];
   // List<ProductModel> get list => _list;
+  late int index = 0;
   List<TextEditingController> nameChildAddcontroller = [];
   final List<DynamicWidget> listDynamic = [];
-  addDynamic() {
-    listDynamic.add(const DynamicWidget());
+  addDynamic(TextEditingController controller, int index) {
+    listDynamic.add(DynamicWidget(
+      index: 1,
+    ));
+    this.index++;
+    nameChildAddcontroller.add(controller);
+    controller.text = "";
     notifyListeners();
   }
 
@@ -32,10 +38,6 @@ class ProductController extends ChangeNotifier {
   //     list[index].telenumber = tlnumber;
   //     notifyListeners();
   // }
-  void Clear(int id) {
-    nameChildAddcontroller.remove(id);
-    notifyListeners();
-  }
 
   void removeChild(int index) {
     listDynamic.removeAt(index);

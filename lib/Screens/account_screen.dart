@@ -26,8 +26,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 color: Colors.white,
                 child: ListTile(
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage(_watch.list[0].avatar ?? ""
-                        ),
+                    backgroundImage: NetworkImage(_watch.list[0].avatar ?? ""),
                   ),
                   title: Text(
                     _watch.list[0].name,
@@ -42,7 +41,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AcountInfoScreen(),
+                            builder: (context) => AcountInfoScreen(),
                           ));
                     },
                   ),

@@ -6,8 +6,8 @@ import 'build_textfield.dart';
 import 'package:intl/intl.dart';
 
 class DynamicWidget extends StatefulWidget {
-  final int? index;
-  const DynamicWidget({Key? key, this.index}) : super(key: key);
+  final int index;
+  const DynamicWidget({Key? key, required this.index}) : super(key: key);
 
   @override
   State<DynamicWidget> createState() => _DynamicWidgetState();
@@ -40,7 +40,7 @@ class _DynamicWidgetState extends State<DynamicWidget> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Thông tin con thứ ${widget.index! + 2} ",
+                  "Thông tin con thứ ${widget.index + 2} ",
                   style: const TextStyle(fontSize: 18),
                 ),
               ),
@@ -55,10 +55,10 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                   ),
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Đã xóa con thứ ${widget.index! + 2}!"),
+                      content: Text("Đã xóa con thứ ${widget.index + 2}!"),
                       duration: const Duration(seconds: 1),
                     ));
-                    _read.removeChild(widget.index!);
+                    _read.removeChild(widget.index);
                   },
                 ),
               ),
@@ -73,8 +73,8 @@ class _DynamicWidgetState extends State<DynamicWidget> {
                   'Họ và tên',
                   style: TextStyle(color: Colors.grey),
                 )),
-            buildTextField("Họ và tên", false,
-                _read.nameChildAddcontroller[widget.index!]),
+            buildTextField(
+                "Họ và tên", false, _read.nameChildAddcontroller[_read.index]),
             const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
